@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Tracker Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      transition: all 0.2s ease-in-out;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #020617);
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #e2e8f0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #f1f5f9;
+      letter-spacing: 0.5px;
+    }
+
+    /* Filters */
+    .filters {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    .filters input,
+    .filters select {
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      background: rgba(255,255,255,0.08);
+      color: #ffffff;
+    }
+
+    .filters input::placeholder {
+      color: #c6ceda;
+    }
+
+    .filters input:focus,
+    .filters select:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 2px rgba(99,102,241,0.4);
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px 16px;
+    }
+
+    th {
+      background: rgba(99,102,241,0.2);
+      color: #c7d2fe;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    tbody tr:hover {
+      background: rgba(99,102,241,0.15);
+      transform: scale(1.01);
+      box-shadow: 0 5px 20px rgba(99,102,241,0.2);
+    }
+
+    /* Status dropdown */
+    .status select {
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      background: rgba(99,102,241,0.2);
+      color: #e2e8f0;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .status select:hover {
+      background: rgba(99,102,241,0.35);
+    }
+
+    /* Links */
+    a {
+      color: #818cf8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #c7d2fe;
+    }
+    /* Fix dropdown option visibility */
+    select option {
+      background: rgba(45, 46, 85, 0.2);;
+      color: #000000;
+    }
+
+    /* Optional: improve hover (works in some browsers) */
+    select option:hover {
+      background: #6366f1;
+      color: #ffffff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      th, td {
+        font-size: 13px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Data Analyst Job Tracker</h1>
+
+  <div class="filters">
+    <input id="searchInput" placeholder="Search title or company…" oninput="filterTable()">
+
+    <select id="locationFilter" onchange="filterTable()">
+      <option value="">All Locations</option>
+    </select>
+
+    <select id="sourceFilter" onchange="filterTable()">
+      <option value="">All Sources</option>
+    </select>
+
+    <select id="statusFilter" onchange="filterTable()">
+      <option value="">All Statuses</option>
+      <option>Pending</option>
+      <option>Applied</option>
+      <option>Rejected</option>
+    </select>
+  </div>
+
+  <table id="jobTable">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Location</th>
+        <th>Source</th>
+        <th>Posted</th>
+        <th>Status</th>
+        <th>Apply</th>
+      </tr>
+    </thead>
+
+    <tbody id="tableBody"></tbody>
+  </table>
+
+  <script src="app.js"></script>
+</body>
+</html>
