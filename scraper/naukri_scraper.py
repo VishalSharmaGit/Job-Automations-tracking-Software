@@ -7,7 +7,7 @@ from datetime import datetime
 from database.insert_jobs import insert_jobs
 
 # ── Paste your RapidAPI key here ──────────────────────────
-RAPIDAPI_KEY = "2425a1ad66mshe21564204dbf38ep1fbf51jsn922aa538d577"
+RAPIDAPI_KEY = "your RapidAPI key here"
 
 class NaukriScraper:
     """
